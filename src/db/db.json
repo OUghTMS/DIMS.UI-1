@@ -1,0 +1,29 @@
+[
+    {
+        "name": "Misha",
+        "lastName": "Sasim",
+        "login": "OUghT",
+        "password": "111",
+        "role": "Admin", 
+        "direction": "JavaScript",
+        "_id": "1"
+    },
+    {
+        "name": "Misha",
+        "lastName": "Sasim",
+        "login": "OUghT",
+        "password": "111",
+        "role": "Admin", 
+        "direction": "JavaScript",
+        "_id": "2"
+    },
+    {
+        "name": "Misha",
+        "lastName": "Sasim",
+        "login": "OUghT",
+        "password": "111",
+        "role": "Admin", 
+        "direction": "JavaScript",
+        "_id": "3"
+    }
+]
