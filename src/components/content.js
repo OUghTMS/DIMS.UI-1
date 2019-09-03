@@ -7,7 +7,7 @@ export default class Content extends Component {
   render() {
     return (
       <div className="content">
-        <Header logOut={this.props.logOut}/>
+        <Header logOut={this.props.logOut} loggedIn={this.props.loggedIn}/>
         <Main />
       </div>
     );

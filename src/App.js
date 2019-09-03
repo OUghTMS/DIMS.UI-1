@@ -29,7 +29,7 @@ export default class App extends Component {
         <Switch>
           <Route path="/login" exact render={ props => !this.state.loggedIn?(<LoginPage loggedIn={this.state.loggedIn} logIn={this.logIn} {...props}/>):
                                                                             (<Redirect to="/"/>)} />
-          <Route path="/" render={ () => this.state.loggedIn?(<Content logOut={this.logOut}/>):
+          <Route path="/" render={ () => this.state.loggedIn?(<Content logOut={this.logOut} loggedIn={this.state.loggedIn}/>):
                                                              (<Redirect to="/login"/>)}/>
         </Switch>
       </Router>
