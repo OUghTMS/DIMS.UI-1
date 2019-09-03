@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 const DIRECTION = { JAVA: 'Java', NET: '.NET', JS: 'JavaScript', C: 'C#' };
 const ROLE = { ADMIN: 'Admin', COMMON: 'Common' };
+const STATUS = { REGISTER: 'Register', EDIT: 'Edit' };
 
-export default class RegisterMenu extends Component {
+export default class ItemEditMenu extends Component {
     constructor(props) {
         super(props);
 
@@ -14,23 +15,55 @@ export default class RegisterMenu extends Component {
             password: "",
             role: ROLE.COMMON,
             direction: DIRECTION.JAVA,
+            status: STATUS.REGISTER
         }
 
         this.onObjectSelectorChange = this.onObjectSelectorChange.bind(this);
         this.onObjectValueChange = this.onObjectValueChange.bind(this);
-        this.onRegister = this.onRegister.bind(this);
+        this.onSubmite = this.onSubmite.bind(this);
     }
+
+    componentDidMount() {
+        const item = this.props.item;
+        if(item) {
+            this.setState({            
+                name: item.name,
+                lastName: item.lastName,
+                login: item.login,
+                password: item.password,
+                role: item.role,
+                direction: item.direction, 
+                status: STATUS.EDIT
+            })
+        }
+    }
+    
     onObjectSelectorChange(event) {
         this.setState({ [event.target.name]: event.target.value });
     }
+
     onObjectValueChange(event) {
         this.setState({ [event.target.name]: event.target.value });
     }
+
+    onSubmite() {
+        if(this.state.status === STATUS.REGISTER) this.onRegister();
+        else if(this.state.status === STATUS.EDIT) this.onEdit();
+    }
+
+    onEdit() {
+        const newItem = this.state;
+        const oldItem = this.props.item;
+        this.props.editItem( oldItem, newItem );
+        this.props.editMenuHandler();
+    }
+
     onRegister() {
         const item = {...this.state};
-        this.props.addNewPerson(item);
-        this.props.registerMenuController();
+        this.props.addNewItem(item);
+        this.props.editMenuHandler();
     }
+
     render() {
         return (
             <div className="add-object-menu-background">
@@ -81,8 +114,8 @@ export default class RegisterMenu extends Component {
                         </div>
                     </div>
                     <div className="buttons">
-                        <button className="add-menu-button left" onClick={this.onRegister}>Register</button>
-                        <button className="add-menu-button right" onClick={this.props.registerMenuController}>Back to Grid</button>
+                        <button className="add-menu-button left" onClick={this.onSubmite}>{this.state.status}</button>
+                        <button className="add-menu-button right" onClick={this.props.editMenuHandler}>Back to Grid</button>
                     </div>
                 </div>
             </div>

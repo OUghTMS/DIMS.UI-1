@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 
 import './App.css';
 
-import Login from './components/login-components/login';
-import Content from './components/content-components/content';
+import LoginPage from './components/login-page';
+import Content from './components/content';
 
 
 export default class App extends Component {
@@ -27,7 +27,7 @@ export default class App extends Component {
     return (
       <Router basename={process.env.PUBLIC_URL}>
         <Switch>
-          <Route path="/login" exact render={ props => !this.state.loggedIn?(<Login logIn={this.logIn} {...props}/>):
+          <Route path="/login" exact render={ props => !this.state.loggedIn?(<LoginPage loggedIn={this.state.loggedIn} logIn={this.logIn} {...props}/>):
                                                                             (<Redirect to="/"/>)} />
           <Route path="/" render={ () => this.state.loggedIn?(<Content logOut={this.logOut}/>):
                                                              (<Redirect to="/login"/>)}/>

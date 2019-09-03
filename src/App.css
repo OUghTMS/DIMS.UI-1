@@ -24,9 +24,6 @@ a {
 
   display: flex;
   align-items: center;
-
-  border-bottom: solid;
-  border-width: 5px;
 }
 .login-main-container {
   display: flex;
