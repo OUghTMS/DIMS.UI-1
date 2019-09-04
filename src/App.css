@@ -199,7 +199,8 @@ h3 {
   align-items: center
 }
 .item-title {
-  margin: 5px 10px;
+  margin: 5px 0px;
+  margin-right: 10px;
 }
 .item-name {
   font-weight: bold;

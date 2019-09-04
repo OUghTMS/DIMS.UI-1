@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import ItemEditMenu from './item-edit-menu';
 import ItemsList from './items-list';
-import db from '../db/db'
+import db from '../db/user'
 
 export default class GridSection extends Component {
     constructor(props){
