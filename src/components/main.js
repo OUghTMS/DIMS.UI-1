@@ -7,8 +7,8 @@ export default class Main extends Component {
   render() {
     return (
       <React.Fragment>
-        <Route path="/member" component={GridSection}/>
-        <Route path="/task" component={GridSection}/>
+        <Route path="/:grid" exact component={GridSection}/>
+        <Route path="/:grid/:_id" component={GridSection}/>
       </React.Fragment>
     );
   }

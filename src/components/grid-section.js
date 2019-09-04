@@ -20,7 +20,10 @@ export default class GridSection extends Component {
     }
 
     componentDidMount() {
-        this.setState({ items: [...db] })
+        const grid = this.props.match.params.grid;
+        this.setState({
+            items: grid === "member" ? [...db] : grid === "task" ? [...db[0].tasks] : []
+        });
     }    
 
     addNewItem(newItem) {

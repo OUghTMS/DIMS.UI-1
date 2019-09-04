@@ -69,7 +69,7 @@ export default class ItemEditMenu extends Component {
             <div className="add-object-menu-background">
                 <div className="add-object-menu">
                     <div className="object-fields">
-                        <h3>Fill in the fields of new user</h3>
+                        <h3>Fill in the fields of user</h3>
                         <div>Login: <input type="text"
                                            name="login"
                                            value={this.state.login}
