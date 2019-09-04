@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 const DIRECTION = { JAVA: 'Java', NET: '.NET', JS: 'JavaScript', C: 'C#' };
-const ROLE = { ADMIN: 'Admin', COMMON: 'Common' };
+const ROLE = { ADMIN: 'Admin', MENTOR: 'Mentor', USER: 'User' };
 const STATUS = { REGISTER: 'Register', EDIT: 'Edit' };
 
 export default class ItemEditMenu extends Component {
@@ -13,7 +13,7 @@ export default class ItemEditMenu extends Component {
             lastName: "",
             login: "",
             password: "",
-            role: ROLE.COMMON,
+            role: ROLE.MENTOR,
             direction: DIRECTION.JAVA,
             status: STATUS.REGISTER
         }
@@ -108,8 +108,9 @@ export default class ItemEditMenu extends Component {
                         </div>
                         <div>Role:<br/>
                             <select className="input" name="role" value={this.state.role} onChange={this.onObjectSelectorChange}>
-                                <option value={ROLE.ADMIN}>Admin</option>
-                                <option value={ROLE.COMMON}>Сommon</option>
+                                <option value={ROLE.ADMIN}>{ROLE.ADMIN}</option>
+                                <option value={ROLE.MENTOR}>{ROLE.MENTOR}</option>
+                                <option value={ROLE.USER}>{ROLE.USER}</option>
                             </select>
                         </div>
                     </div>

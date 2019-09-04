@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import ItemSubmenu from './item-submenu';
 import ItemEditMenu from './item-edit-menu';
+import UserItemFields from './user-item-fields';
 
 export default class Item extends Component {
     constructor(props) {
@@ -23,7 +24,6 @@ export default class Item extends Component {
     }
 
     render() {
-        const { name, lastName, direction } = this.props.item;
         const popup = this.state.popupIsOpen && 
             <ItemSubmenu item={this.props.item}
                          editMenuHandler={this.editMenuHandler}       
@@ -34,10 +34,7 @@ export default class Item extends Component {
                                                                     editItem={this.props.editItem}/>
         return (
             <div className="item">
-                <div className="item-name">
-                    {name} {lastName}
-                </div>
-                <div className="item-direction">{direction}</div>
+                <UserItemFields item={this.props.item}/>
                 <button onClick={this.onButtonClick} className="item-edit-button">⋮</button>
                 {popup}
                 {editMenu}
