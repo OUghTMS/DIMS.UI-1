@@ -24,7 +24,7 @@ export default class Member extends Component {
         const { removeItem, item, editMenuHandler } = this.props;
         return (
             <div className="item-submenu">
-                <div className="submenu-field">Progress</div>
+                <Link to={`/progress/${item._id}`}><div className="submenu-field">Progress</div></Link>
                 <Link to={`/task/${item._id}`}><div className="submenu-field">Tasks</div></Link>
                 <div className="submenu-field" onClick={editMenuHandler}>Edit</div>
                 <div className="submenu-field" onClick={() => removeItem(item)}>Delete</div>
