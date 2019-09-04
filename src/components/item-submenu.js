@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
 export default class Member extends Component {
     constructor(props) {
@@ -20,12 +21,13 @@ export default class Member extends Component {
     }
 
     render() {
+        const { removeItem, item, editMenuHandler } = this.props;
         return (
             <div className="item-submenu">
                 <div className="submenu-field">Progress</div>
-                <div className="submenu-field">Tasks</div>
-                <div className="submenu-field" onClick={this.props.editMenuHandler}>Edit</div>
-                <div className="submenu-field" onClick={() => this.props.removeItem(this.props.item)}>Delete</div>
+                <Link to={`/task/${item._id}`}><div className="submenu-field">Tasks</div></Link>
+                <div className="submenu-field" onClick={editMenuHandler}>Edit</div>
+                <div className="submenu-field" onClick={() => removeItem(item)}>Delete</div>
             </div>
         );
     }

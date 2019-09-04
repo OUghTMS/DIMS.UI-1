@@ -232,6 +232,7 @@ h3 {
   padding: 10px 20px;
   cursor: pointer;
   transition: 0.1s;
+  color: #93909a;
 }
 .submenu-field:hover {
   background: #e2e2e2;

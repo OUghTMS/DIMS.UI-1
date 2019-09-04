@@ -16,13 +16,16 @@ export default class App extends Component {
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
   }
+
   logIn(history) {
     this.setState({ loggedIn: true });
     history.push('/member');
   }
+
   logOut() {
     this.setState({ loggedIn: false });
   }
+  
   render() {
     return (
       <Router basename={process.env.PUBLIC_URL}>
