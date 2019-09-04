@@ -13,21 +13,24 @@
                 "start": "06.12.2010",
                 "deadline": "08.12.2010",
                 "name": "Create task grid",
-                "description": "just go and do it, like ezy-bryzee!"
+                "description": "just go and do it, like ezy-bryzee!",
+                "status": "Success"
             },
             {
                 "_id": "2",
                 "start": "30.06.2019",
                 "deadline": "30.06.2049",
                 "name": "Wait for it",
-                "description": "Just sit and chill for little bit:)"
+                "description": "Just sit and chill for little bit:)",
+                "status": "Active"
             },
             {
                 "_id": "3",
                 "start": "15.07.2019",
                 "deadline": "15.07.2019",
                 "name": "Discuss mozZaaarellaaa",
-                "description": "¯\\_(ツ)_/¯"
+                "description": "¯\\_(ツ)_/¯",
+                "status": "Failed"
             }
         ]
     },
@@ -45,14 +48,16 @@
                 "start": "06.12.2010",
                 "deadline": "08.12.2010",
                 "name": "Create task grid",
-                "description": "just go and do it, like ezy-bryzee!"
+                "description": "just go and do it, like ezy-bryzee!",
+                "status": "Success"
             },
             {
                 "_id": "3",
                 "start": "15.07.2019",
                 "deadline": "15.07.2019",
                 "name": "Discuss mozZaaarellaaa",
-                "description": "¯\\_(ツ)_/¯"
+                "description": "¯\\_(ツ)_/¯",
+                "status": "Failed"
             }
         ]
     },
@@ -70,14 +75,16 @@
                 "start": "30.06.2019",
                 "deadline": "30.06.2049",
                 "name": "Wait for it",
-                "description": "Just sit and chill for little bit:)"
+                "description": "Just sit and chill for little bit:)",
+                "status": "Active"
             },
             {
                 "_id": "3",
                 "start": "15.07.2019",
                 "deadline": "15.07.2019",
                 "name": "Discuss mozZaaarellaaa",
-                "description": "¯\\_(ツ)_/¯"
+                "description": "¯\\_(ツ)_/¯",
+                "status": "Failed"
             }
         ]
     }
