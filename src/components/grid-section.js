@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import ItemEditMenu from './item-edit-menu';
 import ItemsList from './items-list';
-import db from '../db/user'
+import users from '../db/user'
 
 export default class GridSection extends Component {
     constructor(props){
@@ -10,7 +10,8 @@ export default class GridSection extends Component {
 
         this.state = {
             registerMenuIsOpen: false,
-            items: []
+            items: [],
+            data: []
         }
 
         this.editMenuHandler = this.editMenuHandler.bind(this);
@@ -20,9 +21,12 @@ export default class GridSection extends Component {
     }
 
     componentDidMount() {
-        const grid = this.props.match.params.grid;
+        const { _id, grid } = this.props.match.params;
         this.setState({
-            items: grid === "member" ? [...db] : grid === "task" ? [...db[0].tasks] : []
+            items: grid === "member" ? [...users] :
+                _id !== undefined ? users.find(member => member._id === _id)[grid] : 
+                        [].concat(...users.map(user => user.tasks)),
+            data: [...users]
         });
     }    
 
