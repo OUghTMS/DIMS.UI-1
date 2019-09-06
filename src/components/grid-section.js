@@ -14,7 +14,7 @@ export default class GridSection extends Component {
             data: []
         }
 
-        this.editMenuHandler = this.editMenuHandler.bind(this);
+        this.openEditMenu = this.openEditMenu.bind(this);
         this.addNewItem = this.addNewItem.bind(this);
         this.removeItem = this.removeItem.bind(this);
         this.editItem = this.editItem.bind(this);
@@ -46,18 +46,18 @@ export default class GridSection extends Component {
         this.setState({ items: [ ...this.state.items.filter(item => item !== oldItem), newItem ] })
     }
 
-    editMenuHandler() {
+    openEditMenu() {
         this.setState({
             editMenuIsOpen: !this.state.editMenuIsOpen
         });
     }
 
     render() {
-        const popup = this.state.editMenuIsOpen && <ItemEditMenu editMenuHandler={this.editMenuHandler}
+        const popup = this.state.editMenuIsOpen && <ItemEditMenu openEditMenu={this.openEditMenu}
                                                                      addNewItem={this.addNewItem}/>
         return (
             <div>
-                <button className="add-object-button" onClick={this.editMenuHandler}>Register</button>
+                <button className="add-object-button" onClick={this.openEditMenu}>Register</button>
                 <ItemsList editItem={this.editItem} removeItem={this.removeItem} items={this.state.items}/>
                 {popup}
             </div>

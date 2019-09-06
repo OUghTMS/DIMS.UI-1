@@ -18,28 +18,23 @@ export default class ItemEditMenu extends Component {
             status: STATUS.REGISTER
         }
 
-        this.onObjectSelectorChange = this.onObjectSelectorChange.bind(this);
         this.onObjectValueChange = this.onObjectValueChange.bind(this);
         this.onSubmite = this.onSubmite.bind(this);
     }
 
     componentDidMount() {
-        const item = this.props.item;
-        if(item) {
+        if(this.props.item) {
+            const { name, lastName, login, password, role, direction } = this.props.item;
             this.setState({            
-                name: item.name,
-                lastName: item.lastName,
-                login: item.login,
-                password: item.password,
-                role: item.role,
-                direction: item.direction, 
+                name: name,
+                lastName: lastName,
+                login: login,
+                password: password,
+                role: role,
+                direction: direction, 
                 status: STATUS.EDIT
             })
         }
-    }
-    
-    onObjectSelectorChange(event) {
-        this.setState({ [event.target.name]: event.target.value });
     }
 
     onObjectValueChange(event) {
@@ -47,8 +42,11 @@ export default class ItemEditMenu extends Component {
     }
 
     onSubmite() {
-        if(this.state.status === STATUS.REGISTER) this.onRegister();
-        else if(this.state.status === STATUS.EDIT) this.onEdit();
+        if(this.state.status === STATUS.REGISTER) {
+            this.onRegister();
+        } else if(this.state.status === STATUS.EDIT) {
+            this.onEdit();
+        }
     }
 
     onEdit() {
@@ -99,7 +97,7 @@ export default class ItemEditMenu extends Component {
                                                className="input"
                                         /></div>
                         <div>Direction:<br/>
-                            <select className="input" name="direction" value={this.state.direction} onChange={this.onObjectSelectorChange}>
+                            <select className="input" name="direction" value={this.state.direction} onChange={this.onObjectValueChange}>
                                 <option value={DIRECTION.JAVA}>Java</option>
                                 <option value={DIRECTION.NET}>.NET</option>
                                 <option value={DIRECTION.JS}>JavaScript</option>
@@ -107,7 +105,7 @@ export default class ItemEditMenu extends Component {
                             </select>
                         </div>
                         <div>Role:<br/>
-                            <select className="input" name="role" value={this.state.role} onChange={this.onObjectSelectorChange}>
+                            <select className="input" name="role" value={this.state.role} onChange={this.onObjectValueChange}>
                                 <option value={ROLE.ADMIN}>{ROLE.ADMIN}</option>
                                 <option value={ROLE.MENTOR}>{ROLE.MENTOR}</option>
                                 <option value={ROLE.USER}>{ROLE.USER}</option>
@@ -116,7 +114,7 @@ export default class ItemEditMenu extends Component {
                     </div>
                     <div className="buttons">
                         <button className="add-menu-button left" onClick={this.onSubmite}>{this.state.status}</button>
-                        <button className="add-menu-button right" onClick={this.props.editMenuHandler}>Back to Grid</button>
+                        <button className="add-menu-button right" onClick={this.props.openEditMenu}>Back to Grid</button>
                     </div>
                 </div>
             </div>
