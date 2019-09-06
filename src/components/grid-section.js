@@ -21,14 +21,22 @@ export default class GridSection extends Component {
     }
 
     componentDidMount() {
-        const { _id, grid } = this.props.match.params;
         this.setState({
-            items: grid === "member" ? [...users] :
-                _id !== undefined ? users.find(member => member._id === _id)[grid] : 
-                        [].concat(...users.map(user => user.tasks)),
+            items: this.tableSelector(),
             data: [...users]
         });
     }    
+
+    tableSelector() {
+        const { _id, grid } = this.props.match.params;
+        if(grid === "member") {
+            return [...users]
+        } else if(_id !== undefined) {
+            return users.find(member => member._id === _id)[grid]
+        } else {
+            return [].concat(...users.map(user => user.tasks))
+        }
+    }
 
     addNewItem(newItem) {
         const respectedItem = {
