@@ -36,7 +36,7 @@ export default class LoginForm extends Component {
                      onChange={this.onObjectValueChange}/>
               <div className="focus-border" />
             </div>
-            <button onClick={()=>this.props.logIn(this.props.history)} className="enter-button">Enter</button>
+            <button onClick={()=>this.props.logIn(this.props.history, this.state.login, this.state.password)} className="enter-button">Enter</button>
           </div>
         </div>
     );

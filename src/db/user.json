@@ -39,7 +39,7 @@
         "lastName": "Kapusta",
         "login": "Opasnij228",
         "password": "111",
-        "role": "Admin", 
+        "role": "Mentor", 
         "direction": "JavaScript",
         "_id": "2",
         "tasks": [
@@ -66,7 +66,7 @@
         "lastName": "Utug",
         "login": "1337NAG1baToP",
         "password": "111",
-        "role": "Admin", 
+        "role": "User", 
         "direction": "JavaScript",
         "_id": "3",
         "tasks": [
