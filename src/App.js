@@ -23,6 +23,16 @@ export default class App extends Component {
     this.logOut = this.logOut.bind(this);
   }
 
+  componentDidMount() {
+    const authRole = JSON.parse(localStorage.getItem('loggedId')).authRole;
+    if (authRole !== null) {
+      this.setState({
+        loggedIn: true,
+        authRole: authRole
+      });
+    }
+  }
+
   logIn(history, login, password) {
     const user = this.userVerification(login, password);
     if (user) {
@@ -30,6 +40,7 @@ export default class App extends Component {
         loggedIn: true,
         authRole: user.role,
       });
+      localStorage.setItem('loggedId', JSON.stringify({authRole: user.role}));
       history.push('/'+ACCESS_TYPE[user.role]);
     }
   }
@@ -40,12 +51,16 @@ export default class App extends Component {
   }
 
   logOut() {
-    this.setState({loggedIn: false});
+    this.setState({
+      loggedIn: false,
+      authRole: null
+    });
+    localStorage.setItem('loggedId', JSON.stringify({authRole: null}));
   }
 
   loginComponent = (props) => {
     if (this.state.loggedIn) {
-      return <Redirect to="/"/>;
+      return <Redirect to={'/'+ACCESS_TYPE[this.state.authRole]}/>;
     }
 
     return <LoginPage loggedIn={this.state.loggedIn} logIn={this.logIn} {...props}/>;
