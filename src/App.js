@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 
 import './App.css';
 
+import Header from './components/header';
 import LoginPage from './components/login-page';
 import Content from './components/content';
 
 import users from './db/user';
 
-const ACCESS_TYPE = { Admin: 'member', Mentor: 'tasks', User: '' };
+const ACCESS_TYPE = {Admin: 'member', Mentor: 'tasks', User: ''};
 
 export default class App extends Component {
   constructor(props) {
@@ -16,40 +17,55 @@ export default class App extends Component {
 
     this.state = {
       loggedIn: false,
-      authRole: null
-    }
+      authRole: null,
+    };
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
   }
 
   logIn(history, login, password) {
     const user = this.userVerification(login, password);
-    if(user) {
-      this.setState({ 
+    if (user) {
+      this.setState({
         loggedIn: true,
-        authRole: user.role 
+        authRole: user.role,
       });
       history.push('/'+ACCESS_TYPE[user.role]);
     }
   }
 
   userVerification(login, password) {
-    return users.find(user => user.login === login && 
+    return users.find((user) => user.login === login &&
       user.password === password);
   }
 
   logOut() {
-    this.setState({ loggedIn: false });
+    this.setState({loggedIn: false});
   }
-  
+
+  loginComponent = (props) => {
+    if (this.state.loggedIn) {
+      return <Redirect to="/"/>;
+    }
+
+    return <LoginPage loggedIn={this.state.loggedIn} logIn={this.logIn} {...props}/>;
+  }
+
+  homeComponent = () => {
+    if (!this.state.loggedIn) {
+      return <Redirect to="/login"/>;
+    }
+
+    return <Content logOut={this.logOut} loggedIn={this.state.loggedIn}/>
+  }
+
   render() {
     return (
       <Router basename={process.env.PUBLIC_URL}>
+        <Header loggedIn={this.state.loggedIn} logOut={this.logOut}/>
         <Switch>
-          <Route path="/login" exact render={ props => !this.state.loggedIn?(<LoginPage loggedIn={this.state.loggedIn} logIn={this.logIn} {...props}/>):
-                                                                            (<Redirect to="/"/>)} />
-          <Route path="/" render={ () => this.state.loggedIn?(<Content logOut={this.logOut} loggedIn={this.state.loggedIn}/>):
-                                                             (<Redirect to="/login"/>)}/>
+          <Route path="/login" exact render={this.loginComponent} />
+          <Route path="/" render={this.homeComponent}/>
         </Switch>
       </Router>
     );
