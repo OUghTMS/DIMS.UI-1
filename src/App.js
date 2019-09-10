@@ -7,9 +7,9 @@ import Header from './components/header';
 import LoginPage from './components/login-page';
 import Content from './components/content';
 
-import users from './db/user';
+import {ACCESS_TYPE} from './components/constants';
 
-const ACCESS_TYPE = {Admin: 'member', Mentor: 'tasks', User: ''};
+import users from './db/user';
 
 export default class App extends Component {
   constructor(props) {
@@ -56,7 +56,7 @@ export default class App extends Component {
       return <Redirect to="/login"/>;
     }
 
-    return <Content logOut={this.logOut} loggedIn={this.state.loggedIn}/>
+    return <Content logOut={this.logOut} loggedIn={this.state.loggedIn}/>;
   }
 
   render() {

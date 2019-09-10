@@ -11,11 +11,11 @@ export default class Item extends Component {
       popupIsOpen: false,
       editMenuIsOpen: false,
     };
-    this.editMenuHandler = this.editMenuHandler.bind(this);
+    this.openEditMenu = this.openEditMenu.bind(this);
     this.onButtonClick = this.onButtonClick.bind(this);
   }
 
-  editMenuHandler() {
+  openEditMenu() {
     this.setState({editMenuIsOpen: !this.state.editMenuIsOpen});
   }
 
@@ -26,11 +26,11 @@ export default class Item extends Component {
   render() {
     const popup = this.state.popupIsOpen &&
             <ItemSubmenu item={this.props.item}
-              editMenuHandler={this.editMenuHandler}
+              openEditMenu={this.openEditMenu}
               removeItem={this.props.removeItem}
               onButtonClick={this.onButtonClick}/>;
     const editMenu = this.state.editMenuIsOpen && <ItemEditMenu item={this.props.item}
-      editMenuHandler={this.editMenuHandler}
+      openEditMenu={this.openEditMenu}
       editItem={this.props.editItem}/>;
     return (
       <div className="item">

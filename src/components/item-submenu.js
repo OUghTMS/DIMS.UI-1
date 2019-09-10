@@ -21,12 +21,12 @@ export default class Member extends Component {
   }
 
   render() {
-    const {removeItem, item, editMenuHandler} = this.props;
+    const {removeItem, item, openEditMenu} = this.props;
     return (
       <div className="item-submenu">
         <Link to={`/progress/${item._id}`}><div className="submenu-field">Progress</div></Link>
         <Link to={`/tasks/${item._id}`}><div className="submenu-field">Tasks</div></Link>
-        <div className="submenu-field" onClick={editMenuHandler}>Edit</div>
+        <div className="submenu-field" onClick={openEditMenu}>Edit</div>
         <div className="submenu-field" onClick={() => removeItem(item)}>Delete</div>
       </div>
     );

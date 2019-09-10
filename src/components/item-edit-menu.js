@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 
-const DIRECTION = {JAVA: 'Java', NET: '.NET', JS: 'JavaScript', C: 'C#'};
-const ROLE = {ADMIN: 'Admin', MENTOR: 'Mentor', USER: 'User'};
-const STATUS = {REGISTER: 'Register', EDIT: 'Edit'};
+import {DIRECTION, ROLE, STATUS} from './constants';
 
 export default class ItemEditMenu extends Component {
   constructor(props) {
@@ -53,13 +51,13 @@ export default class ItemEditMenu extends Component {
     const newItem = this.state;
     const oldItem = this.props.item;
     this.props.editItem( oldItem, newItem );
-    this.props.editMenuHandler();
+    this.props.openEditMenu();
   }
 
   onRegister() {
     const item = {...this.state};
     this.props.addNewItem(item);
-    this.props.editMenuHandler();
+    this.props.openEditMenu();
   }
 
   render() {
@@ -114,7 +112,7 @@ export default class ItemEditMenu extends Component {
           </div>
           <div className="buttons">
             <button className="add-menu-button left" onClick={this.onSubmite}>{this.state.status}</button>
-            <button className="add-menu-button right" onClick={this.props.openEditMenu}>Back to Grid</button>
+            <button className="add-menu-button right" onClick={() => this.props.openEditMenu()}>Back to Grid</button>
           </div>
         </div>
       </div>
