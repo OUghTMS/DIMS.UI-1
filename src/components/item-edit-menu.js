@@ -48,7 +48,7 @@ export default class ItemEditMenu extends Component {
   }
 
   onEdit() {
-    const newItem = this.state;
+    const newItem = {...this.state, _id: Date.now()};
     const oldItem = this.props.item;
     this.props.editItem( oldItem, newItem );
     this.props.openEditMenu();
