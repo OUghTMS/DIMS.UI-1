@@ -43,6 +43,7 @@ export default class GridSection extends Component {
       ...newItem,
       _id: Date.now(),
     };
+    delete respectedItem.status;
     this.setState({items: [...this.state.items, respectedItem]});
   }
 
@@ -51,6 +52,7 @@ export default class GridSection extends Component {
   }
 
   editItem( oldItem, newItem ) {
+    delete newItem.status;
     this.setState({items: [...this.state.items.filter((item) => item !== oldItem), newItem]});
   }
 
@@ -66,7 +68,7 @@ export default class GridSection extends Component {
     return (
       <div>
         <button className="add-object-button" onClick={this.openEditMenu}>Register</button>
-        <ItemsList editItem={this.editItem} removeItem={this.removeItem} items={this.state.items}/>
+        <ItemsList editItem={this.editItem} removeItem={this.removeItem} items={this.state.items} {...this.props.match.params}/>
         {popup}
       </div>
 

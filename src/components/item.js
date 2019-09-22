@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import ItemSubmenu from './item-submenu';
 import ItemEditMenu from './item-edit-menu';
-import UserItemFields from './user-item-fields';
+import ItemFields from './item-fields';
 
 export default class Item extends Component {
   constructor(props) {
@@ -34,8 +34,8 @@ export default class Item extends Component {
       editItem={this.props.editItem}/>;
     return (
       <div className="item">
-        <UserItemFields item={this.props.item}/>
-        <button onClick={this.onButtonClick} className="item-edit-button">⋮</button>
+        <ItemFields item={this.props.item} grid={this.props.grid}/>
+        <button onClick={this.onButtonClick} className="item-edit-button">...</button>
         {popup}
         {editMenu}
       </div>

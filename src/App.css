@@ -76,7 +76,7 @@ a {
 .content {
   background: #faf9fa;
   width: 100%;
-  min-height: 700px;
+  min-height: 500px;
 }
 img {
   margin: 10px 10px 10px 15px;
@@ -124,6 +124,7 @@ img {
   left: 0;
   top: 0;
   background: rgba(0, 0, 0, 0.397);
+  z-index: 1;
 
   align-items: center;
   display: flex;
@@ -190,17 +191,34 @@ img {
 h3 {
   margin: 8px;
 }
-.item {
+.list {
   display: flex;
+  flex-wrap: wrap;
+}
+.item {
+  flex-grow: 1;
+  flex-basis: 250px;
+  max-width: 600px;
+
+  position: relative;
   padding: 10px 20px;
   border: 0.5px solid rgba(0, 0, 0, 0.109);
   background: #ffffff;
   margin: 5px 20px;
   align-items: center
 }
-.item-title {
+.item-header {
   margin: 5px 0px;
   margin-right: 10px;
+}
+.item-title {
+  display: flex;
+}
+.item-date {  
+  font-size: 13px;
+  color: #aaa7b2;
+  margin-left: auto;
+  margin-right: 25px;
 }
 .item-name {
   font-weight: bold;
@@ -211,12 +229,16 @@ h3 {
   color: #aaa7b2;
 }
 .item-extra-field {
+  float: left;
   margin-left: auto;
   margin-right:  10%;
   font-size: 16px;
-  color: rgb(88, 88, 88);
+  color: rgb(90, 90, 90);
 }
 .item-edit-button {
+  position: absolute;
+  right: 20px;
+  top: 0;
   font-weight: bold;
   font-size: 30px;
   color: rgb(158, 158, 158);
@@ -225,8 +247,10 @@ h3 {
   border: 0.5px solid rgba(0, 0, 0, 0.109);
   background: #ffffff;
   position: absolute;
+  top: -50px;
   right: 0;
   margin: 60px 20px 0px 0px;
+  z-index: 1;
 }
 .submenu-field {
   padding: 10px 20px;

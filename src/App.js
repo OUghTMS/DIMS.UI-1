@@ -28,7 +28,7 @@ export default class App extends Component {
     if (authRole !== null) {
       this.setState({
         loggedIn: true,
-        authRole: authRole
+        authRole: authRole,
       });
     }
   }
@@ -53,7 +53,7 @@ export default class App extends Component {
   logOut() {
     this.setState({
       loggedIn: false,
-      authRole: null
+      authRole: null,
     });
     localStorage.setItem('loggedId', JSON.stringify({authRole: null}));
   }

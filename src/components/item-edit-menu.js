@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {DIRECTION, ROLE, STATUS} from './constants';
+import {DIRECTION, ROLE, STATUS, SEX} from './constants';
 
 export default class ItemEditMenu extends Component {
   constructor(props) {
@@ -11,6 +11,7 @@ export default class ItemEditMenu extends Component {
       lastName: '',
       login: '',
       password: '',
+      sex: SEX.MALE,
       role: ROLE.MENTOR,
       direction: DIRECTION.JAVA,
       status: STATUS.REGISTER,
@@ -22,14 +23,8 @@ export default class ItemEditMenu extends Component {
 
   componentDidMount() {
     if (this.props.item) {
-      const {name, lastName, login, password, role, direction} = this.props.item;
       this.setState({
-        name: name,
-        lastName: lastName,
-        login: login,
-        password: password,
-        role: role,
-        direction: direction,
+        ...this.props.item,
         status: STATUS.EDIT,
       });
     }
@@ -94,12 +89,18 @@ export default class ItemEditMenu extends Component {
               placeholder="Last Name"
               className="input"
             /></div>
+            <div>Sex:<br/>
+              <select className="input" name="sex" value={this.state.sex} onChange={this.onObjectValueChange}>
+                <option value={SEX.MALE}>{SEX.MALE}</option>
+                <option value={SEX.FEMALE}>{SEX.FEMALE}</option>
+              </select>
+            </div>
             <div>Direction:<br/>
               <select className="input" name="direction" value={this.state.direction} onChange={this.onObjectValueChange}>
-                <option value={DIRECTION.JAVA}>Java</option>
-                <option value={DIRECTION.NET}>.NET</option>
-                <option value={DIRECTION.JS}>JavaScript</option>
-                <option value={DIRECTION.C}>C#</option>
+                <option value={DIRECTION.JAVA}>{DIRECTION.JAVA}</option>
+                <option value={DIRECTION.NET}>{DIRECTION.NET}</option>
+                <option value={DIRECTION.JS}>{DIRECTION.JS}</option>
+                <option value={DIRECTION.C}>{DIRECTION.C}</option>
               </select>
             </div>
             <div>Role:<br/>

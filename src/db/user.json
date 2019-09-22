@@ -2,6 +2,7 @@
     {
         "name": "Misha",
         "lastName": "Sasim",
+        "sex": "Male",
         "login": "OUghT",
         "password": "111",
         "role": "Admin", 
@@ -37,6 +38,7 @@
     {
         "name": "Pupa",
         "lastName": "Kapusta",
+        "sex": "Female",
         "login": "Opasnij228",
         "password": "111",
         "role": "Mentor", 
@@ -64,6 +66,7 @@
     {
         "name": "Lupa",
         "lastName": "Utug",
+        "sex": "Female",
         "login": "1337NAG1baToP",
         "password": "111",
         "role": "User", 

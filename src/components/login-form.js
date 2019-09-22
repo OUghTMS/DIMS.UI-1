@@ -21,6 +21,7 @@ export default class LoginForm extends Component {
           <div className="login-greeting">Welcome back!</div>
           <div>
             <input placeholder="Login"
+              type="text"
               className="login-input"
               name="login"
               value={this.state.login}

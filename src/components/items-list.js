@@ -10,7 +10,8 @@ export default class ItemsList extends Component {
         .map((item) => <Item key={item._id}
           item={item}
           removeItem={removeItem}
-          editItem={editItem}/>);
+          editItem={editItem}
+          grid={this.props.grid}/>);
     return (
       <div className="list">
         {newItems}
