@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 import ItemEditMenu from './item-edit-menu';
 import ItemsList from './items-list';
-import users from '../db/user';
 
 export default class GridSection extends Component {
   constructor(props) {
@@ -11,7 +11,6 @@ export default class GridSection extends Component {
     this.state = {
       registerMenuIsOpen: false,
       items: [],
-      data: [],
     };
 
     this.openEditMenu = this.openEditMenu.bind(this);
@@ -21,39 +20,49 @@ export default class GridSection extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      items: this.tableSelector(),
-      data: [...users],
-    });
-  }
-
-  tableSelector() {
     const {_id, grid} = this.props.match.params;
-    if (grid === 'member') {
-      return [...users];
-    } else if (_id !== undefined) {
-      return users.find((member) => member._id === _id)[grid];
-    } else {
-      return [].concat(...users.map((user) => user.tasks));
-    }
+    const requestHttp = _id ? `http://localhost:4000/${grid}/${_id}` : `http://localhost:4000/${grid}`;
+    axios.get(requestHttp)
+        .then((response) => {
+          this.setState({
+            items: response.data,
+          });
+        });
   }
 
   addNewItem(newItem) {
-    const respectedItem = {
-      ...newItem,
-      _id: Date.now(),
-    };
-    delete respectedItem.status;
-    this.setState({items: [...this.state.items, respectedItem]});
+    const {grid} = this.props.match.params;
+    const requestHttp = `http://localhost:4000/${grid}`;
+
+    axios.post(requestHttp, newItem)
+        .then((response) => console.log(response.data));
+    axios.get(requestHttp)
+        .then((response) => {
+          this.setState({
+            items: response.data,
+          });
+        });
   }
 
   removeItem(targetItem) {
+    const {grid} = this.props.match.params;
+    const requestHttp = `http://localhost:4000/${grid}/${targetItem._id}`;
+    axios.delete(requestHttp);
     this.setState({items: this.state.items.filter((item) => item !== targetItem)});
   }
 
-  editItem( oldItem, newItem ) {
-    delete newItem.status;
-    this.setState({items: [...this.state.items.filter((item) => item !== oldItem), newItem]});
+  editItem( oldId, newItem ) {
+    const {grid} = this.props.match.params;
+    const requestHttp = `http://localhost:4000/${grid}/${oldId}`;
+    axios.post(requestHttp, newItem)
+        .then((response) => console.log(response.data));
+
+    axios.get(`http://localhost:4000/${grid}`)
+        .then((response) => {
+          this.setState({
+            items: response.data,
+          });
+        });
   }
 
   openEditMenu() {

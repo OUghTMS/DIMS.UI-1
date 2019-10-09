@@ -16,19 +16,17 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      loggedIn: false,
-      authRole: null,
+      role: null,
     };
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
   }
 
   componentDidMount() {
-    const authRole = JSON.parse(localStorage.getItem('loggedId')).authRole;
-    if (authRole !== null) {
+    if (JSON.parse(localStorage.getItem('loggedId')) !== null) {
+      const role = JSON.parse(localStorage.getItem('loggedId')).role;
       this.setState({
-        loggedIn: true,
-        authRole: authRole,
+        role: role,
       });
     }
   }
@@ -37,11 +35,10 @@ export default class App extends Component {
     const user = this.userVerification(login, password);
     if (user) {
       this.setState({
-        loggedIn: true,
-        authRole: user.role,
+        role: user.role,
       });
-      localStorage.setItem('loggedId', JSON.stringify({authRole: user.role}));
-      history.push('/'+ACCESS_TYPE[user.role]);
+      localStorage.setItem('loggedId', JSON.stringify({role: user.role}));
+      history.push('/'+ACCESS_TYPE[user.role][0]);
     }
   }
 
@@ -52,32 +49,31 @@ export default class App extends Component {
 
   logOut() {
     this.setState({
-      loggedIn: false,
-      authRole: null,
+      role: null,
     });
-    localStorage.setItem('loggedId', JSON.stringify({authRole: null}));
+    localStorage.setItem('loggedId', JSON.stringify({role: null}));
   }
 
   loginComponent = (props) => {
-    if (this.state.loggedIn) {
-      return <Redirect to={'/'+ACCESS_TYPE[this.state.authRole]}/>;
+    if (this.state.role) {
+      return <Redirect to={'/'+ACCESS_TYPE[this.state.role][0]}/>;
     }
 
-    return <LoginPage loggedIn={this.state.loggedIn} logIn={this.logIn} {...props}/>;
+    return <LoginPage loggedIn={this.state.role} logIn={this.logIn} {...props}/>;
   }
 
   homeComponent = () => {
-    if (!this.state.loggedIn) {
+    if (!this.state.role) {
       return <Redirect to="/login"/>;
     }
 
-    return <Content logOut={this.logOut} loggedIn={this.state.loggedIn}/>;
+    return <Content logOut={this.logOut} loggedIn={this.state.role}/>;
   }
 
   render() {
     return (
       <Router basename={process.env.PUBLIC_URL}>
-        <Header loggedIn={this.state.loggedIn} logOut={this.logOut}/>
+        <Header loggedIn={this.state.role} logOut={this.logOut}/>
         <Switch>
           <Route path="/login" exact render={this.loginComponent} />
           <Route path="/" render={this.homeComponent}/>
