@@ -4,12 +4,14 @@
 
 This is a SPI Application for management system that implements authorization and roles(administrator, manager and user). For each of these roles are predefined access rights that allow you to interact with users and data.
 
-## Technologies and Libraries
+## Technologies
 
 - HTML
 - CSS
 - JavaScript
-<br>
+
+## Libraries
+
 - react
 - react-router-dom
 - reactstrap
