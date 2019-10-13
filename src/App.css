@@ -263,3 +263,14 @@ img {
   background: #e2e2e2;
   color: #6441a4;
 }
+.nav-link {
+  color: #ffffff;
+  padding: 0px 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.nav-link:hover {
+  background: #8e6eca;
+  transition: 0.2s;
+}

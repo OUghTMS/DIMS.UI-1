@@ -1,5 +1,6 @@
 const STATUS = {REGISTER: 'Register', EDIT: 'Edit'};
 const ACCESS_TYPE = {Admin: ['member', 'progress', 'tasks'], Mentor: ['tasks', 'progress', 'sub-tasks'], User: ['tasks', 'sub-tasks']};
+const NAV_BUTTONS = {Admin: ['member', 'tasks'], Mentor: ['tasks'], User: []};
 const GRID = {MEMBER: 'member', TASK: 'tasks', PROGRESS: 'progress', SUB_TASK: 'sub-tasks'};
 
 const MEMBER_INPUTS = {
@@ -35,4 +36,4 @@ const TASK_TRACK_INPUTS = {
 const ROLE = {ADMIN: 'Admin', MENTOR: 'Mentor', USER: 'User'};
 const SEX = {MALE: 'Male', FEMALE: 'Female'};
 
-export {SCORE, ROLE, STATUS, ACCESS_TYPE, GRID, SEX, MEMBER_INPUTS, MEMBER_SELECTORS, TASK_INPUTS, TASK_TRACK_INPUTS};
+export {SCORE, ROLE, STATUS, ACCESS_TYPE, NAV_BUTTONS, GRID, SEX, MEMBER_INPUTS, MEMBER_SELECTORS, TASK_INPUTS, TASK_TRACK_INPUTS};
