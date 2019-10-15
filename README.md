@@ -16,6 +16,8 @@ This is a SPI Application for management system that implements authorization an
 - react-router-dom
 - reactstrap
 - axios
+- redux
+- react-redux
 
 ## Available Scripts
 
