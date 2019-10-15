@@ -16,7 +16,8 @@ export default class LoginForm extends Component {
   }
   render() {
     return (
-      <div className="login-main-container">
+      <div className="login-main-container"
+        onKeyDown={event => event.key === 'Enter'? this.props.logIn(this.props.history, this.state.login, this.state.password) : null}>
         <div>
           <div className="login-greeting">Welcome back!</div>
           <div>

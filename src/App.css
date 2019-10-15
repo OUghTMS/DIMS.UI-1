@@ -25,6 +25,9 @@ a {
   display: flex;
   align-items: center;
 }
+.login-main-container:focus {
+  outline: none;
+}
 .login-main-container {
   display: flex;
   justify-content: center;

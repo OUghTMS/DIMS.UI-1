@@ -67,7 +67,7 @@ export default class App extends Component {
       return <Redirect to="/login"/>;
     }
 
-    return <Content logOut={this.logOut} loggedIn={this.state.role}/>;
+    return <Content logOut={this.logOut} loggedIn={this.state.role} />;
   }
 
   render() {

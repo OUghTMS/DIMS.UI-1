@@ -73,7 +73,12 @@ export default class ItemEditMenu extends Component {
     });
 
     return (
-      <div className="add-object-menu-background">
+      <div className="add-object-menu-background"
+        tabIndex={0}
+        onKeyDown={(event) => {
+          if (event.key === 'Escape') this.props.openEditMenu();
+          else if (event.key === 'Enter') this.onSubmite();
+        }}>
         <div className="add-object-menu">
           <div className="object-fields">
             {listOfInputs}
