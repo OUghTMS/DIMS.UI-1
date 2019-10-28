@@ -4,15 +4,15 @@
 
 This is a SPA for management system that implements authorization and roles(administrator, manager and user). For each of these roles are predefined access rights that allow you to interact with users and data.
 
-## Technologies
+## Stack
 
-- HTML
-- CSS
-- JavaScript
+- HTML 5
+- CSS 3
+- ECMAScript
+- React.js
 
-## Libraries
+### Extra Libraries:
 
-- react
 - react-router-dom
 - reactstrap
 - axios
@@ -30,3 +30,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
+
+## Author
+- Github: [@OUghTMS](https://github.com/OUghTMS)
