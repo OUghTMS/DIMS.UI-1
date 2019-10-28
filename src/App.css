@@ -68,14 +68,6 @@ a {
 .login-input:focus ~ .focus-border {
   width: 100%;
 }
-.left-bar {
-  position: fixed;
-  height: 100%;
-  width: 15%;
-  min-width: 170px;
-  background: #19171c;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.287);
-}
 .content {
   background: #faf9fa;
   width: 100%;
@@ -200,16 +192,21 @@ img {
   flex-wrap: wrap;
 }
 .item {
+  cursor: pointer;
   flex-grow: 1;
   flex-basis: 250px;
   max-width: 600px;
 
   position: relative;
+  display: grid;
   padding: 10px 20px;
   border: 0.5px solid rgba(0, 0, 0, 0.109);
   background: #ffffff;
   margin: 5px 20px;
   align-items: center
+}
+.item:hover {
+  cursor: grab;
 }
 .item-header {
   margin: 5px 0px;
@@ -241,8 +238,8 @@ img {
 }
 .item-edit-button {
   position: absolute;
-  right: 20px;
-  top: 0;
+  right: 10px;
+  top: 7px;
   font-weight: bold;
   font-size: 30px;
   color: rgb(158, 158, 158);
@@ -268,12 +265,81 @@ img {
 }
 .nav-link {
   color: #ffffff;
-  padding: 0px 20px;
-  height: 100%;
+  padding: 30px 20px;
   display: flex;
   align-items: center;
 }
 .nav-link:hover {
   background: #8e6eca;
   transition: 0.2s;
+}
+.left-popup {
+  position: fixed;
+  height: 100%;
+  width: 25%;
+  background: #322f37;
+  left: calc(-25% + 1px);
+  top: 0;
+}
+.left-popup:hover {
+  left: 0;
+  transition: 0.5s;
+}
+.loader {
+  height: 300px;
+  width: 100%;
+  position: relative;
+}
+.truck {
+  color: #6441a4;
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  bottom: 0;
+  left: -50px;
+  animation: rururu 30s linear infinite
+}
+.line {
+  height: 4px;
+  width: 100%;
+  background: #6441a4;
+  position: absolute;
+  bottom: 0;
+}
+.dots {
+  align-items: center;
+  justify-content: center;
+  color: #6441a4;
+  display: flex;
+  transition: 1s;
+  height: 50px;
+}
+.dots div {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 100%;
+  width: 50px;
+  font-size: 5px;
+}
+.dot1 {
+  animation: pup 1s alternate infinite
+}
+.dot2 {
+  animation: pup 1s alternate infinite 0.33s
+}
+.dot3 {
+  animation: pup 1s alternate infinite 0.66s
+}
+@keyframes pup {
+  from {
+    font-size: 5px;
+  }
+  to {
+    font-size: 50px;
+  }
+}
+@keyframes rururu {
+  from {left: -50px}
+  to {left: calc(100% - 50px)}
 }

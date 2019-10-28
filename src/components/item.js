@@ -1,29 +1,42 @@
 import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import {changePopupIsOpen, changeEditMenuIsOpen} from '../store/actions';
+
+import {TiArrowSortedDown} from 'react-icons/ti';
 
 import ItemSubmenu from './item-submenu';
 import ItemEditMenu from './item-edit-menu';
 import ItemFields from './item-fields';
 
-class Item extends Component {
+export default class Item extends Component {
+  state = {
+    popupIsOpen: false,
+    editMenuIsOpen: false,
+  };
+
+  changePopupIsOpen = () => {
+    this.setState({popupIsOpen: !this.state.popupIsOpen});
+  }
+
+  changeEditMenuIsOpen = () => {
+    this.setState({editMenuIsOpen: !this.state.editMenuIsOpen});
+  }
+
   render() {
-    const {popupIsOpen, editMenuIsOpen, changePopupIsOpen, changeEditMenuIsOpen} = this.props;
-    const popup = popupIsOpen &&
+    const popup = this.state.popupIsOpen &&
             <ItemSubmenu item={this.props.item}
-              openEditMenu={changeEditMenuIsOpen}
+              openEditMenu={this.changeEditMenuIsOpen}
               removeItem={this.props.removeItem}
-              onButtonClick={changePopupIsOpen}/>;
-    const editMenu = editMenuIsOpen && <ItemEditMenu item={this.props.item}
-      openEditMenu={changeEditMenuIsOpen}
-      editItem={this.props.editItem}/>;
+              onButtonClick={this.changePopupIsOpen}/>;
+    const editMenu = this.state.editMenuIsOpen && <ItemEditMenu item={this.props.item}
+      openEditMenu={this.changeEditMenuIsOpen}/>;
     return (
-      <div className="item">
-        <ItemFields item={this.props.item} grid={this.props.grid}/>
-        <button onClick={changePopupIsOpen} className="item-edit-button"
-          onKeyDown={(event) => event.key === 'Escape'? changePopupIsOpen() : null}
-        >...</button>
+      <div className="item" draggable="true"
+        onDragEnter={() => this.props.dragItemEnter(this.props.item)}
+        onDragStart={() => this.props.itemDrag(this.props.item)}
+      >
+        <ItemFields item={this.props.item} gridName={this.props.gridName}/>
+        <button onClick={this.changePopupIsOpen} className="item-edit-button"
+          onKeyDown={(event) => event.key === 'Escape'? this.changePopupIsOpen() : null}
+        ><TiArrowSortedDown /></button>
         {popup}
         {editMenu}
       </div>
@@ -31,18 +44,3 @@ class Item extends Component {
   }
 }
 
-const putStateToProps = (state) => {
-  return {
-    popupIsOpen: state.popupIsOpen,
-    editMenuIsOpen: state.editMenuIsOpen,
-  };
-};
-
-const putActionsToProps = (dispatch) => {
-  return {
-    changePopupIsOpen: bindActionCreators(changePopupIsOpen, dispatch),
-    changeEditMenuIsOpen: bindActionCreators(changeEditMenuIsOpen, dispatch),
-  };
-};
-
-export default connect(putStateToProps, putActionsToProps)(Item);

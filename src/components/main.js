@@ -7,8 +7,8 @@ export default class Main extends Component {
   render() {
     return (
       <>
-        <Route path="/:grid" exact component={GridSection}/>
-        <Route path="/:grid/:_id" component={GridSection}/>
+        <Route path="/:gridName" exact component={GridSection}/>
+        <Route path="/:gridName/:_id" component={GridSection}/>
       </>
     );
   }

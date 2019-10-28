@@ -14,10 +14,18 @@ export default class LoginForm extends Component {
   onObjectValueChange(event) {
     this.setState({[event.target.name]: event.target.value});
   }
+
+  keyBoardEvent = (event) => {
+    if (event.key === 'Enter') {
+      
+      this.props.logIn(this.props.history, this.state.login, this.state.password);
+    }
+  }
+
   render() {
     return (
       <div className="login-main-container"
-        onKeyDown={event => event.key === 'Enter'? this.props.logIn(this.props.history, this.state.login, this.state.password) : null}>
+        onKeyDown={this.keyBoardEvent}>
         <div>
           <div className="login-greeting">Welcome back!</div>
           <div>

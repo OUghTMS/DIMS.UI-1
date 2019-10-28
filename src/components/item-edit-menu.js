@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 
 import {ROLE, STATUS, SEX, MEMBER_INPUTS, MEMBER_SELECTORS, SCORE} from './constants';
 
+import {GoCheck, GoX} from "react-icons/go";
+
 import TextInput from './text-input';
 import Selectors from './selectors';
 
@@ -62,31 +64,39 @@ export default class ItemEditMenu extends Component {
     this.props.openEditMenu();
   }
 
+  keyBoardEvent = (event) => {
+    if (event.key === 'Escape') this.props.openEditMenu();
+    else if (event.key === 'Enter') this.onSubmite();
+  }
+
   render() {
     const list = Object.values(MEMBER_INPUTS);
     const listOfInputs = list.map((field) => {
-      return <TextInput key={field} nameOfInput={field} value={this.state[field]} onObjectValueChange={this.onObjectValueChange}/>;
+      return <TextInput key={field}
+        nameOfInput={field}
+        value={this.state[field]}
+        onObjectValueChange={this.onObjectValueChange}/>;
     });
     const listSel = Object.values(MEMBER_SELECTORS);
     const listOfSelectors = listSel.map((field) => {
-      return <Selectors key={field.value} selector={field} value={this.state[field.value]} onObjectValueChange={this.onObjectValueChange}/>;
+      return <Selectors key={field.value}
+        selector={field}
+        value={this.state[field.value]}
+        onObjectValueChange={this.onObjectValueChange}/>;
     });
 
     return (
       <div className="add-object-menu-background"
         tabIndex={0}
-        onKeyDown={(event) => {
-          if (event.key === 'Escape') this.props.openEditMenu();
-          else if (event.key === 'Enter') this.onSubmite();
-        }}>
+        onKeyDown={this.keyBoardEvent}>
         <div className="add-object-menu">
           <div className="object-fields">
             {listOfInputs}
             {listOfSelectors}
           </div>
           <div className="buttons">
-            <button className="add-menu-button left" onClick={this.onSubmite}>{this.state.status}</button>
-            <button className="add-menu-button right" onClick={() => this.props.openEditMenu()}>Back to Grid</button>
+            <button className="add-menu-button left" onClick={this.onSubmite}><GoCheck /> {this.state.status}</button>
+            <button className="add-menu-button right" onClick={() => this.props.openEditMenu()}><GoX /> Back to Grid</button>
           </div>
         </div>
       </div>

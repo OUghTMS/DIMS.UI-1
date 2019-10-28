@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom
 
 import './App.css';
 
+import RightNavigationBar from './components/right-navigation-bar';
 import Header from './components/header';
 import LoginPage from './components/login-page';
 import Content from './components/content';
@@ -73,11 +74,12 @@ export default class App extends Component {
   render() {
     return (
       <Router basename={process.env.PUBLIC_URL}>
-        <Header loggedIn={this.state.role} logOut={this.logOut}/>
+        <Header authorized={this.state.role} logOut={this.logOut}/>
         <Switch>
           <Route path="/login" exact render={this.loginComponent} />
           <Route path="/" render={this.homeComponent}/>
         </Switch>
+        <RightNavigationBar role={this.state.role}/>
       </Router>
     );
   }

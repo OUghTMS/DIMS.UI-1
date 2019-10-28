@@ -29,10 +29,10 @@ export default class UserItemFields extends Component {
   }
 
   render() {
-    const grid = this.props.grid;
+    const gridName = this.props.gridName;
     const item = this.props.item;
-    const title = grid === GRID.MEMBER ? item.name+' '+item.lastName : item.name;
-    const subTitle = grid === GRID.MEMBER? item.login : item.status;
+    const title = gridName === GRID.MEMBER ? item.name+' '+item.lastName : item.name;
+    const subTitle = gridName === GRID.MEMBER? item.login : item.status;
     return (
       <>
         <div className="item-header">
