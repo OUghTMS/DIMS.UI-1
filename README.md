@@ -1,8 +1,6 @@
 # DIMS.UI-1 : Dev incubator management system
 
-## Description
-
-This is a SPA for management system that implements authorization and roles(administrator, manager and user). For each of these roles are predefined access rights that allow you to interact with users and data.
+A management system is a set of policies, processes and procedures used by an organization to ensure that it can fulfill the tasks required to achieve its objectives.
 
 ## Stack
 
@@ -18,6 +16,10 @@ This is a SPA for management system that implements authorization and roles(admi
 - axios
 - redux
 - react-redux
+
+## Description
+
+This is a SPA for management system that implements authorization and roles(administrator, manager and user). For each of these roles are predefined access rights that allow you to interact with users and data.
 
 ## Available Scripts
 
