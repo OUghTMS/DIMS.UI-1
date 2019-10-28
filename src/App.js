@@ -3,10 +3,11 @@ import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom
 
 import './App.css';
 
-import RightNavigationBar from './components/right-navigation-bar';
+import LeftNavigationBar from './components/left-navigation-bar';
 import Header from './components/header';
 import LoginPage from './components/login-page';
 import Content from './components/content';
+import AboutSection from './components/about-section';
 
 import {ACCESS_TYPE} from './components/constants';
 
@@ -76,10 +77,11 @@ export default class App extends Component {
       <Router basename={process.env.PUBLIC_URL}>
         <Header authorized={this.state.role} logOut={this.logOut}/>
         <Switch>
+          <Route path="/about" exact component={AboutSection}/>
           <Route path="/login" exact render={this.loginComponent} />
           <Route path="/" render={this.homeComponent}/>
         </Switch>
-        <RightNavigationBar role={this.state.role}/>
+        <LeftNavigationBar role={this.state.role}/>
       </Router>
     );
   }
